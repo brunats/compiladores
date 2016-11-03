@@ -48,7 +48,7 @@ int insereABB(pABB p,void *novo,int(*comparaElemElem)(void *e1,void *e2))
          aux = aux->esq;
          else if(comparaElemElem(novo,aux->dados) == IGUAL)
          {
-             printf("\n!!!ERRO Chave igual!!!\nEsta chave ja foi inserida!\n");
+             //printf("\n!!!ERRO Chave igual!!!\nEsta chave ja foi inserida!\n");
              return FRACASSO;
          }
      }

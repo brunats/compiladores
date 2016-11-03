@@ -1,11 +1,11 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#include <expr.h>
-#define YYSTYPE Atributo
+#include "compilador.h"
+#define YYSTYPE struct Atributo
 %}
 
-%token TADD TMUL TSUB TDIV TAPAR TFPAR TNUM TLIT TID TPVIRG TREAD TPRINT TATR TWHILE TELSE TIF TRET TSTRING TINT TFCHA TACHA TVOID TVIRG TNOT TOR TAND TDIF TIGUAL TMENOR TMAIOR TMAIORIGUAL TMENORIGUAL
+%token TADD TMUL TSUB TDIV TAPAR TFPAR TNUM TLIT TID TPVIRG TREAD TPRINT TATR TWHILE TELSE TIF TRET TSTRING TINT TFCHA TACHA TVOID TVIRG TNOT TOR TAND TDIF TIGUAL TMENOR TMAIOR TMAIORIGUAL TMENORIGUAL TPLIN
 
 %%
 Programa:	ListaFuncoes BlocoPrincipal
@@ -35,19 +35,19 @@ BlocoPrincipal:	TACHA Declaracoes ListaCmd TFCHA
 		| TACHA ListaCmd TFCHA
 		;
 
-Declaracoes:	Declaracoes Declaracao 
+Declaracoes:	Declaracoes Declaracao {imprimeAuxArvore();}
 		| Declaracao
 		;
 
-Declaracao:	Tipo ListaId TPVIRG
+Declaracao:	Tipo ListaId TPVIRG {insereArvore($2.l, $1.tipo); /*printf("bla declaracao\n");*/}
 		;
 
-Tipo:		TINT {$$.tipo = T_Int;}
-		| TSTRING {$$.tipo = T_Str;}
+Tipo:		TINT {$$.tipo = INT;}
+		| TSTRING {$$.tipo = STRING;}
 		;
 
-ListaId:	ListaId TVIRG TID
-		| TID
+ListaId:	ListaId TVIRG TID {insere(&$1.l, $3.nomeId);/*imprime($1.l)*/ $$.l = $1.l;}
+		| TID{$$.l = NULL; insere(&$$.l, $1.nomeId);}
 		;
 
 Bloco:		TACHA ListaCmd TFCHA
@@ -106,9 +106,9 @@ Termo: 		Termo TMUL Fator
 		;
 
 Fator:		TNUM 
-		| TID {$$.listaId = criarLista($1.nomeId);}
+		| TID {/*$$.listaId = criarLista($1.nomeId);*/}
 		| ChamadaFuncao
-		| TAPAR ExprAritmetica TFPAR
+		| TAPAR ExprAritmetica TFPAR {/*$$ = $2*/}
 		| TSUB Fator
 		;
 
@@ -140,6 +140,6 @@ int yyerror (char *str){
 } 		 
 
 int yywrap(){
-	printf("Sintaticamente Correto.\n");
+	printf("\n\nSintaticamente Correto.\n");
 	return 1;
 }

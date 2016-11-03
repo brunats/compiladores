@@ -38,7 +38,7 @@ literal \".*\"
 "read"		{return TREAD;}
 ";"		{return TPVIRG;}
 
-{id}		{strcpy(yylval.nomeId, yytext); return TID;}
+{id}		{strncpy(yylval.nomeId, yytext, 20*sizeof(char)); return TID;}
 {literal}	{return TLIT;}
 {num}		{return TNUM;} 
 .		{printf("Erro  -> %s\n", yytext); exit(0);}

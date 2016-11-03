@@ -1,5 +1,6 @@
 {
 	int a, b;
+	string b;
 	
 	print("Valor de A:");
 	read(a);
@@ -14,6 +15,7 @@
 		if (b > a)
 		{
 			b = b - a;
+			c=1;
 		}
 	}
 	print("\nRes=");

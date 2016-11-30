@@ -1,0 +1,38 @@
+.class public Alo
+.super java/lang/Object
+
+.method public <init>()V
+   aload_0
+
+   invokenonvirtual java/lang/Object/<init>()V
+   return
+.end method
+
+.method public static main([Ljava/lang/String;)V
+   .limit stack 3
+   .limit locals 100
+   iconst_1
+   istore 1
+   iload 1
+   iload 2
+   imul
+   istore 1
+   getstatic java/lang/System/out Ljava/io/PrintStream;
+   iload 2
+   iload 2
+   imul
+   iload 2
+   iload 2
+   idiv
+   isub
+   invokevirtual java/io/PrintStream/print(I)V
+   iload 2
+   iconst_1
+   isub
+   istore 2
+   getstatic java/lang/System/out Ljava/io/PrintStream;
+   ldc "alo"
+   invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+
+return
+.end method

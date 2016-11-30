@@ -1,0 +1,12 @@
+
+{
+	int f,n;
+	n = 4;
+	f = 2;
+	f = f * n;
+print(f);
+	print("alo");
+	
+	
+}	
+

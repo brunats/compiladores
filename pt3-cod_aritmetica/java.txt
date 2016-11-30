@@ -1,0 +1,10 @@
+iconst_0
+iload 0
+iconst_0
+iload 1
+iload 0
+iload 1
+imul
+iconst_0
+iadd
+iload 2

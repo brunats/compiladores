@@ -1,0 +1,20 @@
+{
+	int x,y,a;
+	a = 1;
+	x = 1;
+	y = 3;
+
+	a++;
+	while(a<3){
+		if(x<y){
+			x=30;
+			print(a);
+		}else{
+			print("hue\n");
+		}
+		a=a+1;
+		print(a);
+	}
+	print("finite\n");
+	\\testando comentario
+}
